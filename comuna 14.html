@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indicadores RED - Comuna 00000000</title>
+    <title>Indicadores RED - Resto de la Ciudad</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,7 +66,7 @@
 
 <div class="container">
     <header>
-        <h1>Indicadores Operativos RED — Comuna 14</h1>
+        <h1>Indicadores Operativos RED — Resto de la Ciudad</h1>
     </header>
 
     <div class="chart-wrapper">
@@ -78,8 +78,8 @@
     Chart.register(ChartDataLabels);
     const ctx = document.getElementById('mainChart').getContext('2d');
     
-    // Weeks: 23/03, 30/03, 06/04, 13/04, 20/04, 27/04
-    const labels = ['23/03', '30/03', '06/04', '13/04', '20/04', '27/04'];
+    // Dates: 06/04, 13/04, 20/04, 27/04, 04/05
+    const labels = ['06/04', '13/04', '20/04', '27/04','04/05'];
     
     const chartData = {
         labels: labels,
@@ -87,7 +87,7 @@
             {
                 label: 'Contactos',
                 type: 'bar',
-                data: [161, 479, 427, 551, 487, 542],
+                data: [998, 1034, 1242, 1020, 1423],
                 backgroundColor: '#9e9e9e',
                 hoverBackgroundColor: '#757575',
                 borderRadius: 4,
@@ -103,9 +103,9 @@
                 }
             },
             {
-                label: 'Derivación a Ordenamiento Urbano',
+                label: 'Derivación a Ordenamiento Urbano y Seguridad',
                 type: 'line',
-                data: [42, 53, 104, 147, 165, 207],
+                data: [60, 76, 100, 144, 215],
                 borderColor: '#f4511e',
                 backgroundColor: '#f4511e',
                 borderWidth: 3,
@@ -118,7 +118,7 @@
             {
                 label: 'Derivaciones a dispositivos RED',
                 type: 'line',
-                data: [42, 53, 41, 66, 73, 64],
+                data: [261, 324, 355, 306, 405],
                 borderColor: '#6a1b9a',
                 backgroundColor: '#6a1b9a',
                 borderWidth: 3,
@@ -129,9 +129,9 @@
                 datalabels: { display: false }
             },
             {
-                label: 'No se retira',
+                label: 'Derivación Umbral Cero',
                 type: 'line',
-                data: [3, 146, 52, 39, 84, 25],
+                data: [216, 171, 161, 77, 4],
                 borderColor: '#2e7d32',
                 backgroundColor: '#2e7d32',
                 borderWidth: 3,
@@ -144,7 +144,7 @@
             {
                 label: 'Se retira voluntariamente',
                 type: 'line',
-                data: [70, 222, 227, 272, 133, 208],
+                data: [209, 186, 265, 443, 741],
                 borderColor: '#00acc1',
                 backgroundColor: '#00acc1',
                 borderWidth: 3,
