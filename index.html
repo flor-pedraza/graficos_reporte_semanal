@@ -2,215 +2,28 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indicadores RED - Resto de la Ciudad</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Panel de Indicadores - Comunas</title>
     <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-main: #111827;
-            --text-muted: #6b7280;
-            --grid-color: #f3f4f6;
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        h1 { color: #2c3e50; }
+        .menu-list { list-style: none; padding: 0; }
+        .menu-list li { margin-bottom: 10px; }
+        .menu-list a { 
+            text-decoration: none; 
+            color: #3498db; 
+            font-weight: bold; 
+            font-size: 18px; 
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9fafb;
-            padding: 2rem;
-            color: var(--text-main);
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        header {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .chart-wrapper {
-            position: relative;
-            height: 550px;
-            width: 100%;
-        }
-
-        canvas {
-            width: 100% !important;
-            height: 100% !important;
-        }
+        .menu-list a:hover { color: #2980b9; text-decoration: underline; }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <header>
-        <h1>Indicadores Operativos RED — Resto de la Ciudad</h1>
-    </header>
-
-    <div class="chart-wrapper">
-        <canvas id="mainChart"></canvas>
-    </div>
-</div>
-
-<script>
-    Chart.register(ChartDataLabels);
-    const ctx = document.getElementById('mainChart').getContext('2d');
-    
-    // Dates: 06/04, 13/04, 20/04, 27/04, 04/05
-    const labels = ['06/04', '13/04', '20/04', '27/04','04/05'];
-    
-    const chartData = {
-        labels: labels,
-        datasets: [
-            {
-                label: 'Contactos',
-                type: 'bar',
-                data: [998, 1034, 1242, 1020, 1423],
-                backgroundColor: '#9e9e9e',
-                hoverBackgroundColor: '#757575',
-                borderRadius: 4,
-                order: 2,
-                barPercentage: 0.5,
-                categoryPercentage: 0.8,
-                datalabels: {
-                    align: 'top',
-                    anchor: 'end',
-                    color: '#424242',
-                    font: { weight: '600', size: 12 },
-                    formatter: (value) => value.toLocaleString('es-AR')
-                }
-            },
-            {
-                label: 'Derivación a Ordenamiento Urbano y Seguridad',
-                type: 'line',
-                data: [60, 76, 100, 144, 215],
-                borderColor: '#f4511e',
-                backgroundColor: '#f4511e',
-                borderWidth: 3,
-                pointRadius: 4,
-                pointBackgroundColor: '#f4511e',
-                tension: 0.1,
-                order: 1,
-                datalabels: { display: false }
-            },
-            {
-                label: 'Derivaciones a dispositivos RED',
-                type: 'line',
-                data: [261, 324, 355, 306, 405],
-                borderColor: '#6a1b9a',
-                backgroundColor: '#6a1b9a',
-                borderWidth: 3,
-                pointRadius: 4,
-                pointBackgroundColor: '#6a1b9a',
-                tension: 0.1,
-                order: 1,
-                datalabels: { display: false }
-            },
-            {
-                label: 'Derivación Umbral Cero',
-                type: 'line',
-                data: [216, 171, 161, 77, 4],
-                borderColor: '#2e7d32',
-                backgroundColor: '#2e7d32',
-                borderWidth: 3,
-                pointRadius: 4,
-                pointBackgroundColor: '#2e7d32',
-                tension: 0.1,
-                order: 1,
-                datalabels: { display: false }
-            },
-            {
-                label: 'Se retira voluntariamente',
-                type: 'line',
-                data: [209, 186, 265, 443, 741],
-                borderColor: '#00acc1',
-                backgroundColor: '#00acc1',
-                borderWidth: 3,
-                pointRadius: 4,
-                pointBackgroundColor: '#00acc1',
-                tension: 0.1,
-                order: 1,
-                datalabels: { display: false }
-            }
-        ]
-    };
-
-    const config = {
-        data: chartData,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            layout: {
-                padding: { top: 40 }
-            },
-            plugins: {
-                legend: {
-                    position: 'top',
-                    align: 'center',
-                    labels: {
-                        usePointStyle: true,
-                        pointStyle: 'rect',
-                        padding: 20,
-                        font: { family: 'Inter', size: 12, weight: '500' },
-                        color: '#424242'
-                    }
-                },
-                tooltip: {
-                    backgroundColor: '#111827',
-                    padding: 12,
-                    cornerRadius: 8,
-                    usePointStyle: true
-                },
-                datalabels: {
-                    display: (context) => context.dataset.type === 'bar'
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { color: '#f3f4f6', drawBorder: false },
-                    ticks: {
-                        color: '#9e9e9e',
-                        font: { size: 11 },
-                        padding: 10
-                    }
-                },
-                x: {
-                    grid: { display: false },
-                    ticks: {
-                        color: '#616161',
-                        font: { size: 11, weight: '500' },
-                        padding: 10
-                    }
-                }
-            }
-        }
-    };
-
-    new Chart(ctx, config);
-</script>
-
+    <h1>Reportes de Indicadores Operativos</h1>
+    <p>Seleccioná la comuna que deseás visualizar:</p>
+    <ul class="menu-list">
+        <li><a href="restodelaciudad.html">Ver Reporte - Resto de la Ciudad</a></li>
+    </ul>
+</body>
+</html>
 </body>
 
